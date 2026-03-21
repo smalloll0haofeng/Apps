@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>浩鋒用過的Vesktop</title>
+<link rel="icon" href="-Vesktop.png" type="image/png">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.container { max-width: 500px; }
+h1 { font-size: 40px; margin-bottom: 10px; }
+p { opacity: 0.8; margin-bottom: 30px; }
+.logo { width: 120px; margin-bottom: 20px; border-radius: 20px; }
+
+/* 按鈕樣式 */
+.download-btn {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 18px;
+  color: white;
+  background: #5865f2;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* 版本選單 */
+.version-menu {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffcc00;
+  color: #1e1e2f;
+  border-radius: 8px;
+  display: none;
+  flex-direction: column;
+  min-width: 80px;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.version-menu div {
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.version-menu div:hover { background: #e6b800; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <img src="Vesktop.png" class="logo">
+  <h1>Vesktop</h1>
+  <p>選擇版本後下載</p>
+
+<div class="download-btn" id="downloadBtn">
+  <span class="btn-text">下載 ZIP</span>
+  <span class="version-label" id="versionLabel"></span>
+
+  <div class="version-menu" id="versionMenu">
+    <div data-version="1.0.0"
+         data-url="https://www.dropbox.com/scl/fo/3hcb3zbvkgyeomqphbm0w/ALH4mheos6SfL6qJW3cixdo?rlkey=ltxsuhk8gep6dk29i2swv2s3m&st=ib050b18&dl=1">
+      1.0.0
+    </div>
+    <!-- 可加更多版本 -->
+    <!--
+    <div data-version="1.1.0" data-url="https://...">1.1.0</div>
+    -->
+  </div>
+</div>
+
+<script>
+const btn = document.getElementById("downloadBtn");
+const menu = document.getElementById("versionMenu");
+
+// 點按鈕顯示/隱藏版本選單
+btn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  menu.style.flexDirection = "column";
+});
+
+// 點版本開始下載
+menu.querySelectorAll("div").forEach(item => {
+  item.addEventListener("click", () => {
+    const url = item.getAttribute("data-url");
+    window.location.href = url;
+  });
+});
+
+// 點外面關掉選單
+document.addEventListener("click", () => {
+  menu.style.display = "none";
+});
+</script>
+
+</body>
+</html>
