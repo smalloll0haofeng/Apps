@@ -22,7 +22,6 @@ h1 { font-size: 40px; margin-bottom: 10px; }
 p { opacity: 0.8; margin-bottom: 30px; }
 .logo { width: 120px; margin-bottom: 20px; border-radius: 20px; }
 
-/* 按鈕樣式 */
 .download-btn {
   position: relative;
   display: inline-block;
@@ -34,7 +33,6 @@ p { opacity: 0.8; margin-bottom: 30px; }
   cursor: pointer;
 }
 
-/* 版本選單 */
 .version-menu {
   position: absolute;
   top: 60px;
@@ -71,13 +69,10 @@ p { opacity: 0.8; margin-bottom: 30px; }
 
   <div class="version-menu" id="versionMenu">
     <div data-version="1.0.0"
-         data-url="https://www.dropbox.com/scl/fo/3hcb3zbvkgyeomqphbm0w/ALH4mheos6SfL6qJW3cixdo?rlkey=ltxsuhk8gep6dk29i2swv2s3m&st=ib050b18&dl=1">
+         data-url="https://www.dropbox.com/scl/fo/3hcb3zbvkgyeomqphbm0w/ALH4mheos6SfL6qJW3cixdo?rlkey=3fxvgxa5w1ktmhmrqrym0qbm8&dl=1">
       1.0.0
     </div>
-    <!-- 可加更多版本 -->
-    <!--
-    <div data-version="1.1.0" data-url="https://...">1.1.0</div>
-    -->
+
   </div>
 </div>
 
@@ -85,14 +80,12 @@ p { opacity: 0.8; margin-bottom: 30px; }
 const btn = document.getElementById("downloadBtn");
 const menu = document.getElementById("versionMenu");
 
-// 點按鈕顯示/隱藏版本選單
 btn.addEventListener("click", (e) => {
   e.stopPropagation();
   menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   menu.style.flexDirection = "column";
 });
 
-// 點版本開始下載
 menu.querySelectorAll("div").forEach(item => {
   item.addEventListener("click", () => {
     const url = item.getAttribute("data-url");
@@ -100,7 +93,6 @@ menu.querySelectorAll("div").forEach(item => {
   });
 });
 
-// 點外面關掉選單
 document.addEventListener("click", () => {
   menu.style.display = "none";
 });
